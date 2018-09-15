@@ -1,0 +1,138 @@
+.header{
+    text-align: center;
+    padding: 10px;
+    font-size:24px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    
+}
+.header-device{
+    text-align: center;
+    padding: 10px;
+    font-size:24px;
+}
+.box{
+  
+    height:400px;
+    width: 20%;
+    display: block;
+    float: left;
+    text-align: center;
+}
+.voters{
+    position: relative;
+    width:100%;
+}
+.votes{
+    width:40%;
+    float: left;
+    text-align: center;
+    height:400px;
+}
+.stake{
+    width: 100%;
+    display: block;
+    font-size:72px;
+}
+
+
+/* Fonts */
+html {
+    font-family: 'Lora', sans-serif;
+    width: 100%;
+  }
+  
+  body {
+    margin: 5% auto 0 auto;
+    width: 90%;
+    max-width: 1125px;
+  }
+  
+  h1 {
+    font-size: 28px;
+    margin-bottom: 2.5%;
+  }
+  
+  input,
+  span,
+  label,
+  textarea {
+    font-family: 'Ubuntu', sans-serif;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    border: none;
+    font-size: 36px;
+  }
+  
+  textarea:focus,
+  input:focus {
+    outline: 0;
+  }
+  
+  
+  
+  input[type="submit"] {
+    -webkit-transition: opacity 0.2s ease, background 0.2s ease;
+    transition: opacity 0.2s ease, background 0.2s ease;
+    display: block;
+    opacity: 0;
+    margin: 10px 0 0 0;
+    padding: 10px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background: #EEE;
+  }
+  
+  input[type="submit"]:active {
+    background: #999;
+  }
+  
+  input.question:valid ~ input[type="submit"], textarea.question:valid ~ input[type="submit"] {
+    -webkit-animation: appear 1s forwards;
+    animation: appear 1s forwards;
+  }
+  
+  input.question:invalid ~ input[type="submit"], textarea.question:invalid ~ input[type="submit"] {
+    display: none;
+  }
+  
+  @-webkit-keyframes appear {
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes appear {
+    100% {
+      opacity: 1;
+    }
+  }
+  .input-wrappper{
+      width: 60%;
+      margin-left: 20%;
+    font-size: 24px;
+      
+  }
+  .vote-btn{
+      width: 50%;
+  }
+  .wrapper{
+    margin: 15px
+  }
+  .under-row{
+     margin: 15px;
+     font-size: 24px;
+  }
+  .tx{
+    text-align: left;
+    padding-left: 10px;
+    overflow: hidden;
+  }
+  .id{
+
+  }

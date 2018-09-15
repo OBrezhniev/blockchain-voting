@@ -1,0 +1,72 @@
+<h3 class="header">
+  Secure Stake Holders Voting based on Paillier Treshold cryptosystem
+</h3>
+
+<div class="wrapper">
+  <div class="row">
+    <div class="voters col-md-8">
+      <div class="row">
+        <div class="box col-4">
+          <span class="header-device">Client Device #1</span>
+          <span class="stake">45%</span>
+          <input type="text" [(ngModel)]="choiseFirst">
+          <button class="btn btn-success vote-btn" [disabled]="disabledFirst" (click)="voteFirst()">Vote</button>
+
+        </div>
+        <div class="box col-4">
+          <span class="header-device">Client Device #2</span>
+          <span class="stake">35%</span>
+          <input [(ngModel)]="choiseSecond" name="test">
+          <button class="btn btn-success vote-btn" [disabled]="disabledSecond" (click)="voteSecond()">Vote</button>
+
+        </div>
+        <div class="box col-4">
+          <span class="header-device">Client Device #3</span>
+          <span class="stake">20%</span>
+          <input type="text" [(ngModel)]="choiseThird">
+
+          <button class="btn btn-success vote-btn"[disabled]="disabledThird"  (click)="voteThird()">Vote</button>
+        </div>
+      </div>
+      <div class="enc-public row under-row">
+        <div class="col-12">
+          Public key of System:
+          <b>{{PubKey}}</b>
+        </div>
+      </div>
+      <div class="enc-result row under-row">
+        <div class="col-12">
+          Total Encryption :
+          <b>{{TotalEnc}}</b>
+        </div>
+      </div>
+      <div class="dec-wrapper row under-row">
+        <div class="col-12">
+          <button class="btn btn-success vote-btn">
+            Decrypt Encrypted Result
+          </button>
+        </div>
+      </div>
+      <div class="dec-result row under-row">
+        <div class="col-12">
+          Decrypted Result --
+          YES : <b>{{YES}}</b>
+          NO : <b>{{NO}}</b>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="votes col-md-4">
+      <span class="header-device">Votes</span>
+     
+      <div class="row"  *ngFor="let tx of transactions; let i=index" >
+        <div class="col-1" class="id"> {{i}} </div>
+        <div class="col-11" class="tx">{{tx}}</div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
