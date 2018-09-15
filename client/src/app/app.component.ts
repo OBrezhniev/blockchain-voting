@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiGatewayService } from './services/api-gateway.service';
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -22,33 +23,18 @@ export class AppComponent {
   TotalDec = "dsfdsfdsfdsgdkjglkfdlkmgflkmgf";
   transactions = [];
   constructor(private http: ApiGatewayService) {
-    this.transactions.push("afdsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgfasdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-    this.transactions.push("afa2dsfdsfdsfdsgdkjglkfdlkmgflkmgfdsfdsfdsfdsgdkjglkfdlkmgflkmgf4sdf");
-
-    this.transactions.push("af11dsfdsfdsfdsgdkjglkfdlkmgflkmgfasdf");
+    this.transactions.push("33341316313628840647027179713816352344878836328912058085039972454094325080493939919136728368164937382659440100474506450461657478329264374260134840662419045443");
+    this.transactions.push("33341316313628840647027179713816352344878836328912058085039972454094325080493939919136728368164937382659440100474506450461657478329264374260134840662419045443");
+    this.transactions.push("33341316313628840647027179713816352344878836328912058085039972454094325080493939919136728368164937382659440100474506450461657478329264374260134840662419045443");
+    this.transactions.push("33341316313628840647027179713816352344878836328912058085039972454094325080493939919136728368164937382659440100474506450461657478329264374260134840662419045443");
 
   }
   voteFirst() {
     this.disabledFirst = true;
-    this.http.post("http://localhost:3000/vote", { option: this.choiseFirst === "YES" ? 1000 : 1 }).subscribe((encVote) => {
+    debugger;
+    let choise = this.choiseFirst === "YES" ? 1000 : 1;
+    this.http.get("http://localhost:8080/encrypt?message=" + choise).subscribe((encVote) => {
+      debugger;
       this.http.post("http://localhost:3000/sendtx", { data: encVote }).subscribe((txId) => {
         this.transactions.push(txId);
       });
@@ -56,7 +42,7 @@ export class AppComponent {
   }
   voteSecond() {
     this.disabledSecond = true;
-    this.http.post("localhost:80/vote", { option: this.choiseSecond === "YES" ? 1000 : 1 }).subscribe((encVote) => {
+    this.http.post("localhost:8080/vote", { option: this.choiseSecond === "YES" ? 1000 : 1 }).subscribe((encVote) => {
       this.http.post("http://localhost:3000/sendtx", { data: encVote }).subscribe((txId) => {
         this.transactions.push(txId);
       });
@@ -64,20 +50,32 @@ export class AppComponent {
   }
   voteThird() {
     this.disabledThird = true;
-    this.http.post("http://localhost:80/vote", { option: this.choiseThird === "YES" ? 1000 : 1 }).subscribe((encVote) => {
+    this.http.post("http://localhost:8080/vote", { option: this.choiseThird === "YES" ? 1000 : 1 }).subscribe((encVote) => {
       this.http.post("http://localhost:3000/sendtx", { data: encVote }).subscribe((txId) => {
         this.transactions.push(txId);
       });
     });
   }
   decrypt() {
-    //get all encrypted 
-    this.http.get("http://localhost:3000/all", {}).subscribe((data) => {
+    //get all encrypted
+   // this.http.get("http://localhost:3000/all", {}).subscribe((data) => {
+
+
       console.log("encrypted votes recieved");
-      this.http.post("http://localhost:80/decrypt", data).subscribe((res) => {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+
+
+
+      this.http.post("http://localhost:8080/decryptAll", JSON.stringify(this.transactions)).subscribe((res) => {
         this.TotalDec = res;
       });
-    })
+    //})
 
   }
 }

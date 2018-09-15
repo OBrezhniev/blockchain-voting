@@ -42,7 +42,7 @@
       </div>
       <div class="dec-wrapper row under-row">
         <div class="col-12">
-          <button class="btn btn-success vote-btn">
+          <button class="btn btn-success vote-btn" (click)="decrypt()">
             Decrypt Encrypted Result
           </button>
         </div>
@@ -52,14 +52,14 @@
           Decrypted Result --
           YES : <b>{{YES}}</b>
           NO : <b>{{NO}}</b>
-          
+
         </div>
       </div>
     </div>
 
     <div class="votes col-md-4">
       <span class="header-device">Votes</span>
-     
+
       <div class="row"  *ngFor="let tx of transactions; let i=index" >
         <div class="col-1" class="id"> {{i}} </div>
         <div class="col-11" class="tx">{{tx}}</div>
