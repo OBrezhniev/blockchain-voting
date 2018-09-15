@@ -2,3 +2,6 @@
 .vscode
 node/node_modules
 build
+client/node_modules
+client/dist
+client/e2e
