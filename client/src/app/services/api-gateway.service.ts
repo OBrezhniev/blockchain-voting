@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import {
-  Http, Headers,
-  RequestOptionsArgs
-} from '@angular/http';
 import { Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent } from 'rxjs';
 import { map, filter, scan, catchError } from 'rxjs/operators';
+import {HttpHeaders} from "@angular/common/http";
+
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiGatewayService {
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
 
   }
 
@@ -24,24 +23,30 @@ export class ApiGatewayService {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
   get(url, params?, parameters?): Observable<any> {
-    let requestParameters: RequestOptionsArgs = {};
+    //let requestParameters: RequestOptionsArgs = {};
 
     let headers = new Headers();
-    if (!!params) {
-      requestParameters.search = this.buildUrlSearchParams(params);
-    }
-
-
-    if (parameters) {
-      parameters.forEach(param => {
-        requestParameters[param.key] = param.value
-      });
-    }
-    requestParameters.headers = headers;
+    // if (!!params) {
+    //   requestParameters.search = this.buildUrlSearchParams(params);
+    // }
+    //
+    //
+    // if (parameters) {
+    //   parameters.forEach(param => {
+    //     requestParameters[param.key] = param.value
+    //   });
+    // }
+    // requestParameters.headers = headers;
 
     // this.createAuthorizationHeader(headers);
 
-    return this.http.get(url, requestParameters).pipe(
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+
+    return this.http.get(url, httpOptions).pipe(
       (map(this.unwrapHttpValue))).pipe(
         catchError((error: any) => {
           let unwrapError = this.unwrapHttpError(error);
@@ -51,11 +56,21 @@ export class ApiGatewayService {
 
   }
   public post(url, data) {
-    let headers = new Headers();
+    // let headers = new Headers();
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type':  'application/json'
+    //   })
+    // };
 
-    return this.http.post(url, data, {
-      headers: headers
-    })
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+
+    return this.http.post(url, data, httpOptions)
       .pipe(map(this.unwrapHttpValue)).pipe(
         catchError((error: any) => {
           let unwrapError = this.unwrapHttpError(error);
@@ -68,9 +83,7 @@ export class ApiGatewayService {
   put(url, data) {
     let headers = new Headers();
 
-    return this.http.put(url, data, {
-      headers: headers
-    }).pipe(map(this.unwrapHttpValue)).pipe(
+    return this.http.put(url, data).pipe(map(this.unwrapHttpValue)).pipe(
       catchError((error: any) => {
         let unwrapError = this.unwrapHttpError(error);
         return unwrapError;
@@ -137,5 +150,5 @@ export class ApiGatewayService {
     return "";
     // return !!value.text() ? value.json() : "";
   }
- 
+
 }
