@@ -18,20 +18,19 @@ function setup() {
     // })
 
     Voting = new web3.eth.Contract(VotingJSON.abi, VotingJSON.networks["5777"].address);
-    getAccounts().then((accounts)=>{
+    getAccounts().then((accounts) => {
 
-    promises =[];
-    accounts.forEach(account => {
-        promises.push(addToWhiteList(account));
+        promises = [];
+        accounts.forEach(account => {
+            promises.push(addToWhiteList(account));
+        });
+        Promise.all(promises).then((res) => {
+            console.log("white listed");
+        })
+
     });
-    Promise.all(promises).then((res)=>{
-        console.log("white listed");
-    })
-
-   });
 
 }
-
 
 
 async function vote(from, encryptedBallot) {
@@ -49,15 +48,11 @@ async function getVote(address) {
 }
 
 async function getAddressCount() {
-    //return parseInt(await Voting.methods.addressCount().call());
     return parseInt(await Voting.methods.addressCount().call());
 }
+
 async function getAccounts() {
-    //return parseInt(await Voting.methods.addressCount().call());
-
-    return web3.eth.getAccounts()
-
-
+    return web3.eth.getAccounts();
 }
 
 async function getUniqueAddressByIndex(index) {
@@ -67,9 +62,15 @@ async function getUniqueAddressByIndex(index) {
 async function getAllVotes() {
     let count = await getAddressCount();
     let votes = {};
+    let promises = [];
     for (let i = 0; i < count; i++) {
-        let address = await getUniqueAddressByIndex(i);
-        votes[address] = await getVote(address);
+        let promise = new Promise(async (resolve, reject) => {
+            let address = await getUniqueAddressByIndex(i);
+            votes[address] = await getVote(address);
+            resolve();
+        });
+        promises.push(promise);
+        await Promise.all(promises);
     }
     return votes;
 }
@@ -83,4 +84,3 @@ module.exports.getAddressCount = getAddressCount;
 module.exports.getUniqueAddressByIndex = getUniqueAddressByIndex;
 module.exports.getAllVotes = getAllVotes;
 module.exports.getAccounts = getAccounts;
-
