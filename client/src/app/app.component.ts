@@ -42,7 +42,7 @@ export class AppComponent {
 
   getPubkey() {
     this.http.get("http://localhost:8080/generatePrivateKeys").subscribe((res) => {
-    this.PubKey = res;
+    this.PubKey = res.pubKey;
     });
   }
   getVotesPerHolder(){
