@@ -34,6 +34,9 @@ export class AppComponent {
   transactions = [];
 
   keysFirst = [];
+
+  decriptying = false;
+
   constructor(private http: ApiGatewayService) {
 
     this.getAllAddresses();
@@ -108,6 +111,8 @@ export class AppComponent {
   }
   decrypt() {
 
+    this.decriptying = true;
+
     console.log("encrypted votes recieved");
 
     const httpOptions = {
@@ -123,6 +128,8 @@ export class AppComponent {
         this.TotalDec = parseInt(res.value, 10)
         this.TotalNo = parseInt(res.value.substring(res.value.length-3,res.value.length), 10);
         this.TotalYes = (this.TotalDec-this.TotalNo)/1000;
+
+        this.decriptying=false;
       });
     });
 

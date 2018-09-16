@@ -49,9 +49,10 @@
       <!--</div>-->
       <div class="dec-wrapper row under-row">
         <div class="col-12">
-          <button class="btn btn-success vote-btn" (click)="decrypt()">
+          <button class="btn btn-success vote-btn" (click)="decrypt()" *ngIf="!decriptying">
             Decrypt Encrypted Result
           </button>
+          <div class="loader" *ngIf="decriptying">Loading...</div>
         </div>
       </div>
       <div class="dec-result row under-row">
