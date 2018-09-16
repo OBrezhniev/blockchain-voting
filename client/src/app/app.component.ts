@@ -37,7 +37,8 @@ export class AppComponent {
     this.transactions.push("33341316313628840647027179713816352344878836328912058085039972454094325080493939919136728368164937382659440100474506450461657478329264374260134840662419045443");
     this.transactions.push("33341316313628840647027179713816352344878836328912058085039972454094325080493939919136728368164937382659440100474506450461657478329264374260134840662419045443");
     this.transactions.push("33341316313628840647027179713816352344878836328912058085039972454094325080493939919136728368164937382659440100474506450461657478329264374260134840662419045443");
-    this.getPubkey();
+    this.getAllAddresses();
+    this.getVotesPerHolder();
   }
 
   getPubkey() {
@@ -47,22 +48,28 @@ export class AppComponent {
   }
   getVotesPerHolder(){
     this.http.get("http://localhost:3000/api/getallvotes").subscribe((res)=>{
-        this.keysFirst = [];
-        this.keysSecond = [];
-        this.keysThird = [];
+       console.log(res);
         
     })
+  }
+  getAllAddresses(){
+    this.http.get("http://localhost:3000/api/voters").subscribe((res)=>{
+      this.keysFirst = res.slice(0,45);
+      this.keysSecond =  res.slice(45,80);
+      this.keysThird = res.slice(80,100);
+      
+  })
   }
   voteFirst() {
     this.disabledFirst = true;
     let choise = this.choiseFirst === "Yes" ? 1000 : 1;
     this.transactions = [];
-
     for (let i = 0; i < this.shareFirst; i++) {
       let key = this.keysFirst[i];
       this.http.get("http://localhost:8080/encrypt?message=" + choise).subscribe((encVote) => {
-        this.http.post("http://localhost:3000/sendtx", { data: encVote, pubKey: key }).subscribe((txId) => {
-          this.transactions.push(txId);
+        // let encVote = "33341316313628840647027179713816352344878836328912058085039972454094325080493939919136728368164937382659440100474506450461657478329264374260134840662419045443";
+        this.http.post("http://localhost:3000/api/vote", { ballot: encVote, address: key }).subscribe((txId) => {
+          this.transactions.push(encVote);
         });
       });
     }
@@ -75,10 +82,11 @@ export class AppComponent {
 
     for (let i = 0; i < this.shareSecond; i++) {
       let key = this.keysSecond[i];
+      let encVote = "33341316313628840647027179713816352344878836328912058085039972454094325080493939919136728368164937382659440100474506450461657478329264374260134840662419045443";
+     
       this.http.get("http://localhost:8080/encrypt?message=" + choise).subscribe((encVote) => {
-        debugger;
-        this.http.post("http://localhost:3000/sendtx", { data: encVote, pubKey: key }).subscribe((txId) => {
-          this.transactions.push(txId);
+        this.http.post("http://localhost:3000/api/vote", { ballot: encVote, address: key }).subscribe((txId) => {
+          this.transactions.push(encVote);
         });
       });
     }
@@ -90,18 +98,17 @@ export class AppComponent {
 
     for (let i = 0; i < this.shareThird; i++) {
       let key = this.keysThird[i];
+      let encVote = "33341316313628840647027179713816352344878836328912058085039972454094325080493939919136728368164937382659440100474506450461657478329264374260134840662419045443";
+      
       this.http.get("http://localhost:8080/encrypt?message=" + choise).subscribe((encVote) => {
-        this.http.post("http://localhost:3000/sendtx", { data: encVote, pubKey: key }).subscribe((txId) => {
-          this.transactions.push(txId);
+        this.http.post("http://localhost:3000/api/vote", { ballot: encVote, address: key }).subscribe((txId) => {
+          this.transactions.push(encVote);
         });
       });
     }
   }
   decrypt() {
-    //get all encrypted
-    // this.http.get("http://localhost:3000/all", {}).subscribe((data) => {
-
-
+    
     console.log("encrypted votes recieved");
 
     const httpOptions = {
@@ -111,12 +118,9 @@ export class AppComponent {
       })
     };
 
-
-
     this.http.post("http://localhost:8080/decryptAll", JSON.stringify(this.transactions)).subscribe((res) => {
       this.TotalDec = res;
     });
-    //})
 
   }
 }

@@ -7,7 +7,7 @@ router.post('/vote', async function (req, res) {
 
     console.log("/api/vote");
 
-    let result = await votingService.vote(req.params.address, req.params.ballot);
+    let result = await votingService.vote(req.body.address, req.body.ballot);
     console.log(result);
 
     res.json(result);
@@ -63,6 +63,16 @@ router.get('/getAllVotes', async function (req, res) {
     console.log("/api/getAllVotes");
 
     let result = await votingService.getAllVotes();
+    console.log(result);
+
+    res.json(result);
+
+});
+router.get('/voters', async function (req, res) {
+
+    console.log("/api/voters");
+
+    let result =  await votingService.getAccounts();
     console.log(result);
 
     res.json(result);

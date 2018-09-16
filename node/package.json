@@ -9,9 +9,9 @@
         "cors": "^2.8.3",
         "express": "^4.15.2",
         "log4js": "^0.6.38",
-        "web3": "^1.0.0-beta.36",
-        "truffle-hdwallet-provider": "^0.0.6",
-        "truffle-contract": "^3.0.6"
+        "truffle-contract": "^3.0.6",
+        "truffle-hdwallet-provider": "0.0.6",
+        "web3": "^1.0.0-beta.36"
     },
     "author": "team"
 }

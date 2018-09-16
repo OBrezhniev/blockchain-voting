@@ -18,6 +18,17 @@ function setup() {
     // })
 
     Voting = new web3.eth.Contract(VotingJSON.abi, VotingJSON.networks["5777"].address);
+    getAccounts().then((accounts)=>{
+
+    promises =[];
+    accounts.forEach(account => {
+        promises.push(addToWhiteList(account));
+    });
+    Promise.all(promises).then((res)=>{
+        console.log("white listed");
+    })
+
+   });
 
 }
 
@@ -40,6 +51,13 @@ async function getVote(address) {
 async function getAddressCount() {
     //return parseInt(await Voting.methods.addressCount().call());
     return parseInt(await Voting.methods.addressCount().call());
+}
+async function getAccounts() {
+    //return parseInt(await Voting.methods.addressCount().call());
+
+    return web3.eth.getAccounts()
+
+
 }
 
 async function getUniqueAddressByIndex(index) {
@@ -64,3 +82,5 @@ module.exports.getVote = getVote;
 module.exports.getAddressCount = getAddressCount;
 module.exports.getUniqueAddressByIndex = getUniqueAddressByIndex;
 module.exports.getAllVotes = getAllVotes;
+module.exports.getAccounts = getAccounts;
+

@@ -68,8 +68,8 @@
       <span class="header-device">Votes</span>
 
       <div class="row"  *ngFor="let tx of transactions; let i=index" >
-        <div class="col-1" class="id"> {{i}} </div>
-        <div class="col-11" class="tx">{{tx}}</div>
+        <div class="col-1 id"> {{i +1}} </div>
+        <div class="col-11 tx" >{{tx}}</div>
       </div>
     </div>
   </div>

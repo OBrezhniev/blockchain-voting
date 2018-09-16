@@ -42,29 +42,4 @@ function errorHandler(err, req, res, next) {
 
 votingService.setup();
 
-async function test() {
-    let res;
-
-    let adr = "0xBFc083B26B72e6d7396071a222369B9442C33FCC";
-
-
-    res = await votingService.addToWhiteList(adr);
-    console.log("addToWhiteList:", res);
-
-    // await votingService.vote(adr, "567");
-
-    res = await votingService.getVote(adr);
-    console.log(adr + ": " + res);
-
-    res = await votingService.getVote("0xBFc083B26B72e6d7396071a222369B9442C33FCC");
-    console.log("0xBFc083B26B72e6d7396071a222369B9442C33FCC: " + res);
-
-    res = await votingService.getAddressCount();
-    console.log("getAddressCount: " + res);
-
-    res = await votingService.getUniqueAddressByIndex(1);
-    console.log("getUniqueAddressByIndex(1): " + res);
-
-}
-
-test();
+// x

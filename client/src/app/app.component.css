@@ -25,6 +25,7 @@
 }
 .votes{
     width:40%;
+    overflow-y: scroll;
     float: left;
     text-align: center;
     height:400px;
@@ -131,7 +132,10 @@ html {
   .tx{
     text-align: left;
     padding-left: 10px;
+    white-space: nowrap;
     overflow: hidden;
+    transform-style: inherit;
+    text-overflow: ellipsis;
   }
   .id{
 
