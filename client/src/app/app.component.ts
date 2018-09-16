@@ -41,7 +41,7 @@ export class AppComponent {
   }
 
   getPubkey() {
-    this.http.get("http://localhost:8080/generate").subscribe((res) => {
+    this.http.get("http://localhost:8080/generatePrivateKeys").subscribe((res) => {
     this.PubKey = res;
     });
   }
