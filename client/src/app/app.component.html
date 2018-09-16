@@ -1,5 +1,5 @@
 <h3 class="header">
-  Secure Stake Holders Voting based on Paillier Treshold cryptosystem
+  Secure Stake Holder Voting based on Paillier Threshold Cryptosystem
 </h3>
 
 <div class="wrapper">
@@ -9,23 +9,37 @@
         <div class="box col-4">
           <span class="header-device">Client Device #1</span>
           <span class="stake">45%</span>
-          <input type="text" [(ngModel)]="choiseFirst">
+          <div>
+              <input type="radio" id="v1c1" [(ngModel)]="choiseFirst" [value]="0" class="radio" name="v1"> <label for="v1c1">Candidate 1</label>
+          </div>
+          <div>
+              <input type="radio" id="v1c2" [(ngModel)]="choiseFirst" [value]="1" class="radio" name="v1"> <label for="v1c2">Candidate 2</label>
+          </div>
           <button class="btn btn-success vote-btn" [disabled]="disabledFirst" (click)="voteFirst()">Vote</button>
 
         </div>
         <div class="box col-4">
           <span class="header-device">Client Device #2</span>
           <span class="stake">35%</span>
-          <input [(ngModel)]="choiseSecond" name="test">
+          <div>
+            <input type="radio" id="v2c1" [(ngModel)]="choiseSecond" [value]="0" class="radio" name="v2"> <label for="v2c1">Candidate 1</label>
+          </div>
+          <div>
+            <input type="radio" id="v2c2" [(ngModel)]="choiseSecond" [value]="1" class="radio" name="v2"> <label for="v2c2">Candidate 2</label>
+          </div>
           <button class="btn btn-success vote-btn" [disabled]="disabledSecond" (click)="voteSecond()">Vote</button>
-
         </div>
         <div class="box col-4">
           <span class="header-device">Client Device #3</span>
           <span class="stake">20%</span>
-          <input type="text" [(ngModel)]="choiseThird">
+          <div>
+            <input type="radio" id="v3c1" [(ngModel)]="choiseThird" [value]="0" class="radio" name="v3"> <label for="v3c1">Candidate 1</label>
+          </div>
+          <div>
+            <input type="radio" id="v3c2" [(ngModel)]="choiseThird" [value]="1" class="radio" name="v3"> <label for="v3c2">Candidate 2</label>
+          </div>
 
-          <button class="btn btn-success vote-btn"[disabled]="disabledThird"  (click)="voteThird()">Vote</button>
+          <button class="btn btn-success vote-btn" [disabled]="disabledThird"  (click)="voteThird()">Vote</button>
         </div>
       </div>
       <div class="dec-wrapper row under-row">
@@ -57,10 +71,9 @@
       </div>
       <div class="dec-result row under-row">
         <div class="col-12">
-          Decrypted Result --
-          YES : <b>{{TotalYes}}</b>
-          NO : <b>{{TotalNo}}</b>
-
+          Decrypted Result:
+          <div>Candidate 1: <b>{{TotalYes}}</b></div>
+          <div>Candidate 2: <b>{{TotalNo}}</b></div>
         </div>
       </div>
     </div>

@@ -36,6 +36,10 @@
     font-size:72px;
 }
 
+input.radio {
+  display: inline;
+  width: auto;
+}
 
 /* Fonts */
 html {
@@ -56,11 +60,19 @@ html {
 
   input,
   span,
-  label,
   textarea {
     font-family: 'Ubuntu', sans-serif;
     display: block;
     width: 100%;
+    text-align: center;
+    padding: 5px;
+    border: none;
+    font-size: 36px;
+  }
+
+label {
+    font-family: 'Ubuntu', sans-serif;
+    display: inline;
     text-align: center;
     padding: 5px;
     border: none;

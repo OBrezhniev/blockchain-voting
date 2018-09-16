@@ -11,9 +11,9 @@ export class AppComponent {
   keysSecond: any;
   keysThird: any;
   title = 'app';
-  choiseThird = "Yes";
-  choiseSecond = "Yes";
-  choiseFirst = "No";
+  choiseThird = 0;
+  choiseSecond = 0;
+  choiseFirst = 0;
 
   disabledThird = false;
   disabledSecond = false;
@@ -64,7 +64,7 @@ export class AppComponent {
   }
   voteFirst() {
     this.disabledFirst = true;
-    let choise = this.choiseFirst === "Yes" ? 1000 : 1;
+    let choise = this.choiseFirst === 1 ? 1000 : 1;
     this.transactions = [];
     for (let i = 0; i < this.shareFirst; i++) {
       let key = this.keysFirst[i];
@@ -79,7 +79,7 @@ export class AppComponent {
   }
   voteSecond() {
     this.disabledSecond = true;
-    let choise = this.choiseSecond === "Yes" ? 1000 : 1;
+    let choise = this.choiseSecond === 1 ? 1000 : 1;
     this.transactions = [];
 
     for (let i = 0; i < this.shareSecond; i++) {
@@ -95,7 +95,7 @@ export class AppComponent {
   }
   voteThird() {
     this.disabledThird = true;
-    let choise = this.choiseThird === "Yes" ? 1000 : 1;
+    let choise = this.choiseThird === 1 ? 1000 : 1;
     this.transactions = [];
 
     for (let i = 0; i < this.shareThird; i++) {
@@ -125,7 +125,7 @@ export class AppComponent {
       console.log(res);
       this.TRUEencryptions =   res;
       this.http.post("http://localhost:8080/decryptAll", JSON.stringify(this.TRUEencryptions)).subscribe((res) => {
-        this.TotalDec = parseInt(res.value, 10)
+        this.TotalDec = parseInt(res.value, 10);
         this.TotalNo = parseInt(res.value.substring(res.value.length-3,res.value.length), 10);
         this.TotalYes = (this.TotalDec-this.TotalNo)/1000;
 
