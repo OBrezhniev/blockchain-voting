@@ -45,13 +45,16 @@ votingService.setup();
 async function test() {
     let res;
 
-    res = await votingService.addToWhiteList("0xBFc083B26B72e6d7396071a222369B9442C33FCC");
+    let adr = "0xBFc083B26B72e6d7396071a222369B9442C33FCC";
+
+
+    res = await votingService.addToWhiteList(adr);
     console.log("addToWhiteList:", res);
 
-    //await vote("0xBFc083B26B72e6d7396071a222369B9442C33FCC", "567");
+    // await votingService.vote(adr, "567");
 
-    res = await votingService.getVote("0x600e068049E7Ee86006F45b6eDd7FDf9A086D6CB");
-    console.log("0x600e068049E7Ee86006F45b6eDd7FDf9A086D6CB: " + res);
+    res = await votingService.getVote(adr);
+    console.log(adr + ": " + res);
 
     res = await votingService.getVote("0xBFc083B26B72e6d7396071a222369B9442C33FCC");
     console.log("0xBFc083B26B72e6d7396071a222369B9442C33FCC: " + res);

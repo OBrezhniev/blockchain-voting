@@ -33,17 +33,29 @@ async function addToWhiteList(address) {
         .send({from: config.defaultAddress, gas: 700000});
 }
 
-function getVote(address) {
+async function getVote(address) {
     return Voting.methods.getVote(address).call();
 }
 
-function getAddressCount() {
-    return Voting.methods.addressCount().call();
+async function getAddressCount() {
+    //return parseInt(await Voting.methods.addressCount().call());
+    return parseInt(await Voting.methods.addressCount().call());
 }
 
-function getUniqueAddressByIndex(index) {
+async function getUniqueAddressByIndex(index) {
     return Voting.methods.getUniqueAddressByIndex(index).call();
 }
+
+async function getAllVotes() {
+    let count = await getAddressCount();
+    let votes = {};
+    for (let i = 0; i < count; i++) {
+        let address = await getUniqueAddressByIndex(i);
+        votes[address] = await getVote(address);
+    }
+    return votes;
+}
+
 
 module.exports.setup = setup;
 module.exports.vote = vote;
@@ -51,3 +63,4 @@ module.exports.addToWhiteList = addToWhiteList;
 module.exports.getVote = getVote;
 module.exports.getAddressCount = getAddressCount;
 module.exports.getUniqueAddressByIndex = getUniqueAddressByIndex;
+module.exports.getAllVotes = getAllVotes;
