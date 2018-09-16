@@ -58,5 +58,16 @@ router.get('/getUniqueAddressByIndex', async function (req, res) {
 
 });
 
+router.get('/getAllVotes', async function (req, res) {
+
+    console.log("/api/getAllVotes");
+
+    let result = await votingService.getAllVotes();
+    console.log(result);
+
+    res.json(result);
+
+});
+
 
 module.exports = router;
