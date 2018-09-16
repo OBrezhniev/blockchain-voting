@@ -32,7 +32,7 @@ const server = http.createServer(app).listen(port, function () {
 logger.info('****************** SERVER STARTED ************************');
 logger.info('**************  http://' + host + ':' + port + '  ******************');
 
-server.setTimeout(30000);
+server.setTimeout(60000);
 
 function errorHandler(err, req, res, next) {
     if (err instanceof URIError && err.code === 403) {
