@@ -46,7 +46,7 @@ export class AppComponent {
     });
   }
   getVotesPerHolder(){
-    this.http.get("http://localhost:3000/api/votes").subscribe((res)=>{
+    this.http.get("http://localhost:3000/api/getallvotes").subscribe((res)=>{
         this.keysFirst = [];
         this.keysSecond = [];
         this.keysThird = [];
