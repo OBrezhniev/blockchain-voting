@@ -61,12 +61,15 @@ async function getUniqueAddressByIndex(index) {
 
 async function getAllVotes() {
     let count = await getAddressCount();
-    let votes = {};
+    //let votes = {};
+    let votes = [];
     let promises = [];
     for (let i = 0; i < count; i++) {
         let promise = new Promise(async (resolve, reject) => {
             let address = await getUniqueAddressByIndex(i);
-            votes[address] = await getVote(address);
+            // votes[address] = await getVote(address);
+            const vote = await getVote(address);
+            votes.push(vote);
             resolve();
         });
         promises.push(promise);

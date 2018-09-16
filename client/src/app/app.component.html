@@ -31,7 +31,7 @@
       <div class="dec-wrapper row under-row">
         <div class="col-12">
           <button class="btn btn-success vote-btn" (click)="getPubkey()">
-            Generate shares and public key 
+            Generate shares and public key
           </button>
         </div>
       </div>
@@ -41,12 +41,12 @@
           <b>{{PubKey}}</b>
         </div>
       </div>
-      <div class="enc-result row under-row">
-        <div class="col-12">
-          Total Encryption :
-          <b>{{TotalEnc}}</b>
-        </div>
-      </div>
+      <!--<div class="enc-result row under-row">-->
+        <!--<div class="col-12">-->
+          <!--Total Encryption :-->
+          <!--<b>{{TotalEnc}}</b>-->
+        <!--</div>-->
+      <!--</div>-->
       <div class="dec-wrapper row under-row">
         <div class="col-12">
           <button class="btn btn-success vote-btn" (click)="decrypt()">
@@ -57,8 +57,8 @@
       <div class="dec-result row under-row">
         <div class="col-12">
           Decrypted Result --
-          YES : <b>{{YES}}</b>
-          NO : <b>{{NO}}</b>
+          YES : <b>{{TotalYes}}</b>
+          NO : <b>{{TotalNo}}</b>
 
         </div>
       </div>
