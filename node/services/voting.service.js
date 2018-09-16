@@ -66,10 +66,13 @@ async function getUniqueAddressByIndex(index) {
 
 async function getAllVotes() {
     let count = await getAddressCount();
-    let votes = {};
+    //let votes = {};
+    let votes = [];
     for (let i = 0; i < count; i++) {
         let address = await getUniqueAddressByIndex(i);
-        votes[address] = await getVote(address);
+        // votes[address] = await getVote(address);
+        const vote = await getVote(address);
+        votes.push(vote);
     }
     return votes;
 }
