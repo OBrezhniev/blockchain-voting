@@ -68,6 +68,7 @@ router.get('/getAllVotes', async function (req, res) {
     res.json(result);
 
 });
+
 router.get('/voters', async function (req, res) {
 
     console.log("/api/voters");
